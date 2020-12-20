@@ -1,14 +1,31 @@
-<h1>To Do</h1>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>To Do List</title>
+    <link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <div class="center-column">
+      <form method="POST", action="/">
+        {{form.title}}
+        {% csrf_token %}
+        <input class="btn btn-info" type="submit" name="Create Task">
+      </form>
 
-<form method="POST", action="/">
-  {{form.title}}
-  {% csrf_token %}
-  <input type="submit" name="create Task">
-</form>
+      {% for task in tasks %}
+        <div class="item-row">
+          <a class="btn btn-sm btn-info"href="{% url 'update_task' task.id %}">Update</a>
+          <a class="btn btn-sm btn-danger" href="{% url 'delete_task' task.id %}">Delete</a>
 
-{% for task in tasks %}
-  <div>
-    <a href="{% url 'update_task' task.id %}">Update</a>
-    <p>{{task}}</p>
-  </div>
-{% endfor %}
+          {% if task.complete == True %}
+          <s>{{task}}</s>
+          {% else %}
+          <span>{{task}}</span>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
