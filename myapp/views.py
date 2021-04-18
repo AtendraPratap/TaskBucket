@@ -18,7 +18,7 @@ def index(request):
         return redirect('/')
 
     context = {'tasks':tasks, 'form':form}
-    return render(request,'tasks/list.html',context)
+    return render(request,'myapp/list.html',context)
 
 def updatetask(request,pk):
     tasks = Task.objects.get(id=pk)
@@ -33,7 +33,7 @@ def updatetask(request,pk):
 
     context = {'form':form}
 
-    return render(request,'tasks/update_task.html',context)
+    return render(request,'myapp/update_task.html',context)
 
 def deletetask(request,pk):
     item = Task.objects.get(id=pk)
@@ -43,4 +43,4 @@ def deletetask(request,pk):
         return redirect('/')
 
     context = {'item':item}
-    return render(request,'tasks/delete.html',context)
+    return render(request,'myapp/delete.html',context)
