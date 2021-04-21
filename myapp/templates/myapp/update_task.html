@@ -1,7 +1,25 @@
+<style type="text/css">
+body{
+  background-color: #36679c;
+}
+
+.updation{
+	text-align: center;
+	justify-content: center;
+	
+}
+</style>
+
+<div class="updation" id="headline">
 <h1>Update Task</h1>
+</div>
+
+<div class="task_form" id="main_form">
 
 <form method='POST' action="">
   {% csrf_token %}
   {{form}}
   <input type="submit" name="Update Task">
 </form>
+
+</div>
